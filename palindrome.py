@@ -1,6 +1,6 @@
 # Leetcode Question 2: Palindrome
-# Solved 
-# Big O Notation: O() time
+# Solved: 7/10/2026 
+# Big O Notation: O(log(n)) time
 # Easy
 # https://leetcode.com/problems/palindrome-number/
 
@@ -8,7 +8,10 @@
 # I also determined that subtracting the modulo from the result and dividing by 10 is another way of getting the floor of the division of a number by 10, which is useful for removing the last digit of a number.
 # now tomorrow I'm going to determine how to use these operations in a loop to compare digits for determining if a number is a palindrome.
 
-#still have yet to handle the case when x is negative!
+#Learned:
+# reviewed modulo operation, array operations such as reverse() and append().
+# Equating two arrays in python just points two variables at the same array, it does not make a copy!
+# learned about break statements and if statements in python.
 class Solution(object):
     def isPalindrome(self, x):
         """
@@ -19,6 +22,10 @@ class Solution(object):
         original_seq = []
         reversed_seq = []
 
+        # since a palindrome can never be negative
+        if x < 0:
+            return False
+        
         # reverse the number, store in array for comparison
         while True:
                 last_digit = x % 10
