@@ -1,6 +1,6 @@
 # Leetcode Question 3: Roman to Integer
 # Solved: 
-# Big O Notation: O() time
+# Big O Notation: O(n) runtime
 # Easy
 # https://leetcode.com/problems/roman-to-integer/
 
