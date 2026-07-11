@@ -4,7 +4,7 @@
 # Easy
 # https://leetcode.com/problems/longest-common-prefix/description/
 
-#initial attempt, overcomplicated logic
+#initial attempt, redoing the logic where we use the minimum list length to set how many comparisons are necessary across all strings
 class Solution(object):
     def longestCommonPrefix(self, strs):
         """
@@ -34,3 +34,15 @@ class Solution(object):
                         temp_common_longest_prefix = longest_common_prefix[:char_index]
 
         return temp_common_longest_prefix
+
+       # stop value
+        smallest_string = len(strs[0])
+        
+        for string in strs:
+            if len(string) < smallest_string:
+                smallest_string = len(string) 
+
+        for minimum_char_index in range(smallest_string):
+            for string in strs:
+                string[minimum_char_index]
+                strs[]
