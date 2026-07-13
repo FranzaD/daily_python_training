@@ -32,13 +32,20 @@ class Solution(object):
             # if bracket is closed, check top of stack for matching open bracket
             # if match found,  pop open bracket from stack
             # if match not found return false
-            if bracket == ')' or bracket == '}' or bracket == ']':
-                # is the last element in stack an open bracket? if so then pop off stack
-                if stack[-1] ==  dict[bracket]:
-                    stack.pop()
+            # so that the stack doesn't get accessed if it's empty
 
-                # since the open bracket and closing bracket don't match the input string is invalid
-                #return False
+            if bracket == ')' or bracket == '}' or bracket == ']':
+                if stack != []:
+                    # is the last element in stack an open bracket? if so then pop off stack
+                    if stack[-1] ==  dict[bracket]:
+                        stack.pop()
+                
+                # if the stack is empty, then throw the closing bracket in anyway
+                if stack == [] and len(s) == 1:
+                    stack.append(bracket)
+                # when a closing bracket exists and the stack is empty
+                #if stack == []:
+                #    return False
 
         #if all parantheses had pairs by the end of the for loop it should be empty, otherwise false
         if stack == []:
