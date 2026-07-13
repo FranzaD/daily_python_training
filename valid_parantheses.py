@@ -12,17 +12,35 @@
     # adding happens in the back
     # removing happens at the front
 
-dict = { ')': '(', ']': '[', '}': '{' }
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        dict = { ')': '(', ']': '[', '}': '{' }
+        
+        # this is a list
+        stack = []
+        # s is a string, so index is the character/bracket itself
+        # for loop should end when string is empty, right? unless i should use range
+        for bracket in s:
+            # if bracket is open, push into stack
+            if bracket == '(' or bracket == '{' or bracket == '[':
+                stack.append(bracket)
 
-stack = []
+            # if bracket is closed, check top of stack for matching open bracket
+            # if match found,  pop open bracket from stack
+            # if match not found return false
+            if bracket == ')' or bracket == '}' or bracket == ']':
+                # is the last element in stack an open bracket? if so then pop off stack
+                if stack[-1] ==  dict[bracket]:
+                    stack.pop()
 
-# I think this works for the first test case, but it definitely doesn't work for the others
-for char in s:
-    stack.append(char)
-    if char == dict[char]:
-        stack.pop(char)
-        if len(stack) == 0:
+                # since the open bracket and closing bracket don't match the input string is invalid
+                #return False
+
+        #if all parantheses had pairs by the end of the for loop it should be empty, otherwise false
+        if stack == []:
             return True
-
- 
-
+        return False
