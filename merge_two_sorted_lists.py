@@ -4,10 +4,9 @@
 # Easy
 # https://leetcode.com/problems/merge-two-sorted-lists/description/
 
+#learned: Introduction to linkedlist in python, surprisingly tedious, but overall makes sense
 
 # Definition for singly-linked list.
-
-#learned: Introduction to linkedlist in python, surprisingly tedious, but overall makes sense
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
