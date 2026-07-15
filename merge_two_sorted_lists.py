@@ -1,8 +1,8 @@
-# Leetcode Question 6: Merge T
+# Leetcode Question 6: Merge Two Sorted Lists
 # Solved: 
 # Big O Notation: O() runtime 
 # Easy
-# https://leetcode.com/problems/longest-common-prefix/description/
+# https://leetcode.com/problems/merge-two-sorted-lists/description/
 
 
 # Definition for singly-linked list.
