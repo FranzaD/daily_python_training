@@ -1,12 +1,13 @@
 # Leetcode Question 6: Merge Two Sorted Lists
 # Solved: 7/15/2026
-# Big O Notation: O() runtime 
+# Big O Notation: O(n+m) runtime 
 # Easy
 # https://leetcode.com/problems/merge-two-sorted-lists/description/
 
 
 # Definition for singly-linked list.
-# Definition for singly-linked list.
+
+#learned: Introduction to linkedlist in python, surprisingly tedious, but overall makes sense
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
