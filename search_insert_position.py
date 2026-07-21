@@ -1,11 +1,11 @@
 # Leetcode Question 10: Search Insert Position
-# Solved: 
-# Big O Notation: O(logn)
+# Solved: 7/21/2026
+# Big O Notation: O(logn) runtime since binary search is O(logn)  
 # Easy
 # https://leetcode.com/problems/search-insert-position/description/
 
-# Learned:
-
+# Learned: reintroduced to binary search using an array (not trees), very tedious logic to run through to make sure I handle all edge cases
+# I definitely want more practice with binary search
 class Solution(object):
     def searchInsert(self, nums, target):
         """
@@ -13,23 +13,11 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        for i in range(len(nums)):
-            if nums[i] == target:
-                return i
-            elif target <= 0:
-                return 0
-            elif target > nums[len(nums)-1]:
-                return len(nums)
-            elif nums[i-1] < target < nums[i+1]:
-                return i
-
-        # solution that implements binary search
         high_index = len(nums)-1
         low_index = 0
 
-        # but low_index would never be higher than high_index
-        # the other thing I was thinking was using a flag, while glag = false, but then again, I can just break the loop by returning where the index matches the target no need to flag.
-        while low_index < high_index:
+        # iterate through the array via binary search only exiting if target is outside hte bounds of the upper and lower bounds
+        while low_index <= high_index:
             mid_index = (low_index + high_index)//2
             if nums[mid_index] == target:
                 return mid_index
