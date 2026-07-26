@@ -13,28 +13,35 @@ class Solution(object):
         :type b: str
         :rtype: str
         """
-        result = a + b
-        result_length = 0
+        # result string starts with blank space that can be trimmed off at the end with splice()
+        result = " "
+        carry_digit = 0
+        total_sum = 0
 
-        #have carry string assigned just enough zeros to help with the binary addition?
-        for i in result:
-            carry_string = "0"
-
-        # loop that will compare characters in string a and b and correctly format the result string that will br returned.
+        # loop that will compare characters in string a and b and a carry digit and correctly format the result string that will br returned.
         for i in range(-1, -len(result), -1):
-            if a[i] != b[i]:
-                result[i] = 1
-                result_length += 1
-            elif a[i] == b[i] == 0:
-                result[i] = 0
-                result_length += 1
-            elif a[i] == b[i] == 1:
-                result[i] = 0
-                result[i-1] = 1
-                # but this means that the next place already has a value in it, does that need to be taken into account in the next iteration of the loop? That a previous one was carried over?
+            #sum characters in strings...but they're characters, not digits.
+            # calculate total
+            if a[i] == "1":
+                total += 1
+            if  b[i] == "1":
+                total += 1
+            if carry == 1:
+                total += 1
 
-                # or maybe it makes sense to have a carry array, that is originally all zeros, but then carries ones in the right places that way the one that is carried doesnt get overrided.
-                result_length += 2
-                
-        #by the time the loop is over slice off the leading zeros that don't match the result length calculated and return the string
+            # a and b are alternating
+            if total == 0:
+                result[i] = "0"
+            #
+            if total == 1:
+                result[i] = "1"
+            if total == 2:
+                result[i] = "1"
+                carry = 1
+            if total == 3:
+                result[i] = "1"
+                carry = 1
+                # but when should carry be reset?
+
         return result
+
