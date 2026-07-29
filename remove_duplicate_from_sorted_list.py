@@ -1,10 +1,12 @@
 # Leetcode Question 16: Remove Duplicate from Sorted List
-# Solved: 
-# Big O Notation: O() runtime 
+# Solved: 7/29/2026
+# Big O Notation: O(n) runtime 
 # Easy
 # https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/
 
-# Learned:
+# Learned: Refreshed using else instead of elif, else doesn't require a condition and it's when you want one or the other code snippet to run not both potentially
+# - Using a secondary pointer helps in comparing adjacent nodes without losing track of the current node.
+# - Always check for None before accessing attributes to avoid runtime errors.
 
 #Definition for singly-linked list.
 class ListNode(object):
@@ -18,15 +20,23 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        current_node = head
+        # don't even assign pointers if head is none
+        if head is None:
+            return head
+        else:
+            current_node = head
+            compare_node = head.next
 
-        while current_node is not None and current_node.next is not None:
-            if current_node.val == current_node.next.val:
-                current_node.next = current_node.next.next
-                if current_node.val == current_node.next.val:
-                    
-            current_node = current_node.next
+        while compare_node is not None and head is not None:
+            # if adjacent nodes are different, drop the duplicate node
+            if current_node.val == compare_node.val:
+                current_node.next = compare_node.next
+                # drops the duplicate node
+                compare_node = current_node.next
+                
+            # if adjacent nodes are in different iterate along
+            else:
+                compare_node = compare_node.next        
+                current_node = current_node.next
 
         return head
-    # I either need to reevaluate the stopping condition, implement a secondary pointer for 
-    # moving through the linked list to help current with comparisions or rewrite the logic since it keps going out of bounds
