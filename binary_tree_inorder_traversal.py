@@ -1,10 +1,11 @@
 # Leetcode Question 17: Binary Tree Inorder Traversal
-# Solved: 
-# Big O Notation: O() runtime 
+# Solved: 7/30/2026
+# Big O Notation: O(n) runtime 
 # Easy
 # https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
-# Learned: Reviewing recursion and inorder traversal of trees
+# Learned: How recursion functions, the mechanics of inorder traversal of trees
+# definitely need more practice with recursion, identifying base case of unwind and to handle holding and returning desired output recursively
 
 # Definition for a binary tree node.
 class TreeNode(object):
@@ -19,15 +20,12 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: List[int]
         """
-        result_list = []
+        # stop in order travesal (unwind) once None is found for any branch
         if root is None:
-            # base case - what happens here? return an empty list
             return []
-        # step 1: recurse left
-        while self.inorderTraversal(root.left) is not None:
-            result_list.append(root.val)
-        # step 2: record node.val
-        result.append(root.val)
-        # step 3: recurse right
-        while self.inorderTraversal(root.right) is not None:
-            result_list.append(root.val)
+        # list of values found in left branch
+        left_values = self.inorderTraversal(root.left)  
+        # list of values found in right branch
+        right_values = self.inorderTraversal(root.right)
+        # return values in the order dictates by inorder traversal left, center, then right
+        return left_values + [root.val] + right_values
