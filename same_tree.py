@@ -4,9 +4,9 @@
 # Easy
 # https://leetcode.com/problems/same-tree/description/
 
-# Learned:
+# Learned: Seems like most test cases run with this logic 64/67, still running through edge cases to pass the final tests
 
-# Definition for a binary tree node.
+# Definition for a binary tree node. 
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):
         self.val = val
