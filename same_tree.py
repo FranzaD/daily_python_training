@@ -19,26 +19,13 @@ class Solution(object):
         :type q: Optional[TreeNode]
         :rtype: bool
         """
-        # functional that will traverse both trees and do the actual recursion
-        def inorderTraversal(treeNode):
-            """
-            :rtype: list
-            """
-            if treeNode is None:
-                return [None]
-            left_values = inorderTraversal(treeNode.left)
-            right_values = inorderTraversal(treeNode.right)
-
-            return left_values + [treeNode.val] + right_values 
-
-        # traverse p recursively
-        p_list = inorderTraversal(p)
-        
-        # traverse q recursively
-        q_list = inorderTraversal(q)
-        
-        # return true or false from a comparsion of p and q lists 
-        if p_list == q_list:
+        # none is not a value of a node, it indicates branch that doesnt have a node
+        if p is None and q is None:
             return True
-        else:
+        elif p is None or q is None:
             return False
+        # if nodes with values exist that dont match then trees are not the same
+        elif p.val != q.val:
+            return False
+        else: # if values do match then the remainder of the tree needs to be searched
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
