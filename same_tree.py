@@ -1,10 +1,11 @@
 # Leetcode Question 18: Same Tree
-# Solved: 
-# Big O Notation: O() runtime 
+# Solved: 8/3/2026
+# Big O Notation: O(n) runtime since it traverses every node in both trees to check for equality
 # Easy
 # https://leetcode.com/problems/same-tree/description/
 
-# Learned: Seems like most test cases run with this logic 64/67, still running through edge cases to pass the final tests
+# Learned: First time using an inline return statement, 
+# this is a brilliant method for going back up to a node to traverse the other branches/subtree
 
 # Definition for a binary tree node. 
 class TreeNode(object):
