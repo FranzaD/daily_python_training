@@ -20,27 +20,19 @@ class Solution(object):
         :type targetSum: int
         :rtype: bool
         """
-        # base cases
+        # base case, if root had no node
         if root is None:
             return False
-
-        #immediately begin calculating sum
-        # if going down, add
-        sum += node.val
-        # if going up, subtract
-        sum -= node.val
-
-        # if left node exists, traverse
-        if node.left is not None:
-            hasPathSum(node.left)
-        # if not left, go right
-        elif node.left is None and node.right is not None:
-            hasPathSum(node.right)
-        # if leaf found, check sum and then unwind by one node, subtract value
-        elif node.left is None and node.right is None:
-            if sum == targetSum:
-                return True
-            else: # target sum not found in this branch, return what? just need to go back up
-                sum = sum - node.val
-                return node.val
+        # check current node if this is a path
+        if  targetSum - root.val == 0:
+            return True
+        # if left available go left
+        elif root.left is not None:
+            self.hasPathSum(root.left, targetSum - root.val)
+        # if right available go right
+        elif root.right is not None:
+            self.hasPathSum(root.right, targetSum - root.val)
+        # if leaf node
+        else:
+            return False
 
