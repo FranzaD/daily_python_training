@@ -1,20 +1,27 @@
 # Leetcode Question 27: Best Time to Buy and Sell Stock
-# Solved: 
+# Solved: 8/14/2026
 # Big O Notation: O(n) runtime
 # Easy
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 
-# Learned:
+# Learned: Seek out the best so far and run comparisons along with obtaining those values. 
 
-max_profit = 0
-# each buy day in prices is then compared to each sell day
-for buy_day in range(0, len(prices)):
-    # bounds ensure the sell days are only after buy days (to avoid unnecessary operations)
-    # Ending is inclusive of the last day/index of the prices list
-    for sell_day in range(buy_day+1, len(prices)):
-        # if difference between buy and sell day is >= 0 then remember that is the max profit found
-        profit = prices[sell_day] - prices[buy_day]
-        if profit >= max_profit:
-            max_profit = profit
-# the largest max profit found after all comparisons gets returned
-print(max_profit)
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        max_profit = 0
+        minimum_price = prices[0]
+        
+        for current_price in prices:
+            if current_price <= minimum_price:
+                minimum_price = current_price 
+            
+            profit = current_price - minimum_price
+            
+            if profit >= max_profit:
+                max_profit = profit
+        
+        return max_profit
