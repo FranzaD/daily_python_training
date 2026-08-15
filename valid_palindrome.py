@@ -1,14 +1,16 @@
 # Leetcode Question 28: Valid Palindrome
-# Solved: 
-# Big O Notation: O() runtime
+# Solved: 6/15/2026
+# Big O Notation: O(n) runtime, no nested loops
 # Easy
 # https://leetcode.com/problems/valid-palindrome/description/
 
-# Learned:
+# Learned: How to debug and step through code using break points in vs code, allowing me to quickly find what logic isn't triggering to assist with debugging code
+
 import string
 
-s = "race a car"
+#s = "aA"
 #"A man, a plan, a canal: Panama"
+#""
 def isPalindrome(s):
     """
     :type s: str
@@ -17,8 +19,7 @@ def isPalindrome(s):
     # Commence Cleaning: string must be comprised of nonalphanumeric characters
     def cleanString(s):
         #convert all characters to lower case
-        if not s.islower():
-            s = s.lower()
+        s = s.lower()
 
         #removes leading and trailing whitespaces
         s = s.strip()
@@ -28,26 +29,27 @@ def isPalindrome(s):
             s = s.replace(i, "")
 
         # removes spaces between characters from string
-        for i in s:
-            s = s.replace(" ", "")
+        s = s.replace(" ", "")
         
         #returns cleaned string
         return s
 
     #check if the string needs to be cleaned of unnecessary characters
-    # if string only contains alphanumeric characters, check if it is a palindrome
-    if s.isalnum():
-        palindrome = ""
+    if not s.isalnum() or not s.islower():
+        s = cleanString(s)
+    
+    #reverse string for checking if string is a palindrome
+    def reverseString(s):
+        reversed_string = ""
         for char in s[::-1]:
-            palindrome += char
-        # checks if string is a palindrome, returns true
-        if s == palindrome:
-            return True
-        else:
-            return False
-    # string needs to be cleaned if there are nonalphanumeric characters present
-    else: 
-        return isPalindrome(cleanString(s))
+            reversed_string += char
+        return reversed_string
+        
+    # checks if string is a palindrome, returns true
+    if s == reverseString(s):
+        return True
+    else:
+        return False
 
 print(isPalindrome(s))
         
