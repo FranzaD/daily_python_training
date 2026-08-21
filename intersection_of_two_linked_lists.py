@@ -22,14 +22,19 @@ class Solution(object):
         currB = headB
     
         # iterate until intersection found, if at end of linkedlists then return no intersection found
-        while currA is not currB:
-            # only iterate if either current pointer is not at the end of their respective linkedlist
-            if currA is not None:
-                currA = currA.next
-            if currB is not None:
+        while currA is not None:
+            while currB is not None:
+                # check if current pointers are at the same node
+                if currA is currB:
+                    return currA
+                
+                # iterate to the next node
                 currB = currB.next
             
-            return "No Intersection"
-
-        # if loop exited then intersection found
-        return f"Intesected at {currA.val}"
+            # reset currB to the beginning of the list
+            currB = headB
+            # iterate to next node to run compare all of listB to
+            currA = currA.next
+        
+        # at loop exit then currA has checked every node against listB and there is no intersection
+        return currA
